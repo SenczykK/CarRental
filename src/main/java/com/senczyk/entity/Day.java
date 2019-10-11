@@ -1,9 +1,17 @@
 package com.senczyk.entity;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
+
+import com.senczyk.enums.*;
 
 @Entity
 public class Day {
@@ -12,97 +20,75 @@ public class Day {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 	
-	private String date;
-	private String typeOfVehicle;
+	private Date date;
+	
+	private TypeOfVehicle typeOfVehicle;
+	
 	private String nameOfVehicle;
 	private String producerName;
-	private String color;
-	private String productionDate;
-	private String user;
-	private String rentDate;
 	
-	/*public static void setTypeOfVehicle(String s) {
-		if(s == "BIKE") {
-			typeOfVehicle = typeOfVehicle.BIKE;
-		}
-		else if(s == "CAR") {
-			setProducerName("-");
-			setColor("-");
-			setProductionDate(null);
-			typeOfVehicle = typeOfVehicle.CAR;
-		}
-	}*/
-
+	private Color color;
+	
+	private Date productionDate;
+	
+	@OneToOne
+	@JoinColumn(name="user_id")
+	private User user;
+	
+	private Date rentDate;
+	
 	public int getId() {
 		return id;
 	}
-
 	public void setId(int id) {
 		this.id = id;
 	}
-
-	public String getDate() {
+	public Date getDate() {
 		return date;
 	}
-
-	public void setDate(String date) {
+	public void setDate(Date date) {
 		this.date = date;
 	}
-
-	public String getTypeOfVehicle() {
+	public TypeOfVehicle getTypeOfVehicle() {
 		return typeOfVehicle;
 	}
-
-	public void setTypeOfVehicle(String typeOfVehicle) {
+	public void setTypeOfVehicle(TypeOfVehicle typeOfVehicle) {
 		this.typeOfVehicle = typeOfVehicle;
 	}
-
 	public String getNameOfVehicle() {
 		return nameOfVehicle;
 	}
-
 	public void setNameOfVehicle(String nameOfVehicle) {
 		this.nameOfVehicle = nameOfVehicle;
 	}
-
 	public String getProducerName() {
 		return producerName;
 	}
-
 	public void setProducerName(String producerName) {
 		this.producerName = producerName;
 	}
-
-	public String getColor() {
+	public Color getColor() {
 		return color;
 	}
-
-	public void setColor(String color) {
+	public void setColor(Color color) {
 		this.color = color;
 	}
-
-	public String getProductionDate() {
+	public Date getProductionDate() {
 		return productionDate;
 	}
-
-	public void setProductionDate(String productionDate) {
+	public void setProductionDate(Date productionDate) {
 		this.productionDate = productionDate;
 	}
-
-	public String getUser() {
+	public User getUser() {
 		return user;
 	}
-
-	public void setUser(String user) {
+	public void setUser(User user) {
 		this.user = user;
 	}
-
-	public String getRentDate() {
+	public Date getRentDate() {
 		return rentDate;
 	}
-
-	public void setRentDate(String rentDate) {
+	public void setRentDate(Date rentDate) {
 		this.rentDate = rentDate;
 	}
-
 }
